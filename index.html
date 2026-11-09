@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#f7f4ee">
+  <title>SpanBuy spreadsheet – dansk guide til produktlinks og QC</title>
+  <meta name="description" content="Brug et SpanBuy spreadsheet til at sammenligne sneakers, tøj og tilbehør. Se 10 kategorier, tjek mål og QC-fotos, og planlæg forsendelse til Danmark.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:title" content="SpanBuy spreadsheet – dansk guide til produktlinks og QC">
+  <meta property="og:description" content="Find den rigtige kategori, kontrollér produktlinket, og sammenlign mål, QC-fotos og fragt til Danmark.">
+  <!--
+    Søgeresearch: Googles første resultatside kunne ikke verificeres direkte.
+    Emner fra 10 domæner fundet i offentlige søgeresultater for SpanBuy spreadsheet:
+    spanbuy.app (produktlinks og QC), spanbuyspreadshee.com (arkiver og varianter),
+    cnfanssheet.com (lager og samling), span-buy.com (kategorivalg),
+    haulkit.app (agent og fragt), hipobuyyupoo.net (linkimport og lagerkontrol),
+    mixfittio.com (markedspladser), usfanskakobuy.com (gebyrer og fragtruter),
+    spanbuy.delivery (kategorier), qcradar.com (linkstatus og QC).
+  -->
+  <style>
+    :root{color-scheme:light;--paper:#f7f4ee;--ink:#24213a;--muted:#555163;--line:#d6cfd9;--violet:#ece6f8;--plum:#2e2542;--rust:#8e3928;--white:#fffdf9}
+    *,*::before,*::after{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+    img{display:block;width:100%;height:auto}
+    a{color:inherit;text-underline-offset:.22em}
+    a:focus-visible,summary:focus-visible{outline:3px solid var(--rust);outline-offset:4px}
+    h1,h2,h3,p,figure{margin:0}
+    h1,h2{line-height:1.08;text-wrap:balance}
+    h1{font-size:clamp(2.55rem,7.2vw,5.6rem);letter-spacing:-.066em;font-weight:780}
+    h2{font-size:clamp(1.65rem,4vw,2.75rem);letter-spacing:-.044em}
+    h3{font-size:1.18rem;line-height:1.25}
+    .wrap{width:min(72rem,calc(100% - 2rem));margin-inline:auto}
+    .bar{min-height:4rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:.55rem 0}
+    .brand{font-weight:800;text-decoration:none}
+    .tag{font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--rust)}
+    .hero{display:grid;grid-template-columns:1.35fr .65fr;gap:clamp(1rem,5vw,5rem);align-items:center;padding-block:clamp(1.65rem,5vw,3.75rem) 1.45rem}
+    .hero h1{margin:.55rem 0 1rem}
+    .hero p:not(.tag){max-width:58ch;color:var(--muted)}
+    .hero-photo{background:var(--violet);border:1px solid var(--line);border-radius:.7rem;overflow:hidden}
+    .hero-photo img{aspect-ratio:4/3;object-fit:contain;background:#f5f5f5}
+    figcaption{padding:.65rem .8rem;font-size:.86rem;line-height:1.4}
+    .index{background:var(--plum);color:var(--white);padding:clamp(1rem,4vw,2rem);border-radius:.85rem}
+    .index h2{font-size:clamp(1.35rem,3vw,2rem);margin-bottom:.85rem}
+    .index ul{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.45rem;list-style:none;padding:0;margin:0}
+    .index a{display:flex;justify-content:space-between;align-items:center;gap:.4rem;min-height:3rem;padding:.45rem .58rem;border:1px solid #8d7f9d;border-radius:.36rem;text-decoration:none;font-size:.88rem;line-height:1.25}
+    .index a:hover{background:var(--violet);color:var(--ink)}
+    .index a:focus-visible{outline-color:#fff}
+    .index a span{color:inherit;font-size:.75rem}
+    .section{padding-block:clamp(1.8rem,5vw,3.65rem);border-bottom:1px solid var(--line)}
+    .section h2{margin:.35rem 0 1rem}
+    .intro{max-width:68ch;color:var(--muted);margin-bottom:1rem}
+    .articles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+    article{padding:1.05rem;background:var(--white);border:1px solid var(--line);border-radius:.55rem}
+    article h3{margin:.35rem 0 .55rem}
+    article p+p{margin-top:.55rem}
+    .check{margin:.65rem 0 0;padding-left:1.2rem}
+    .check li+li{margin-top:.25rem}
+    .gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem}
+    .gallery figure{min-width:0;background:var(--white);border:1px solid var(--line);border-radius:.55rem;overflow:hidden}
+    .gallery img{aspect-ratio:1;object-fit:contain;background:#f2eef3}
+    .faq{max-width:52rem}
+    details{border-top:1px solid var(--line);padding:.65rem 0}
+    summary{cursor:pointer;font-weight:750;padding:.28rem 0}
+    details p{padding:.3rem 0 .45rem;color:var(--muted)}
+    .footer{padding:1.2rem 0 2rem;color:var(--muted);font-size:.91rem}
+    .footer p+p{margin-top:.4rem}
+    @media(max-width:54rem){.index ul{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:37rem){.hero{grid-template-columns:1fr;gap:.9rem}.hero-photo{max-width:22rem}.hero-photo img{aspect-ratio:2/1}.articles{grid-template-columns:1fr}.index ul,.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "SpanBuy spreadsheet – dansk guide til produktlinks og QC",
+        "description": "Brug et SpanBuy spreadsheet til at sammenligne sneakers, tøj og tilbehør. Se 10 kategorier, tjek mål og QC-fotos, og planlæg forsendelse til Danmark.",
+        "inLanguage": "da",
+        "about": {"@type": "Thing", "name": "SpanBuy spreadsheet"}
+      },
+      {
+        "@type": "FAQPage",
+        "name": "Spørgsmål om produktlinks, QC og fragt",
+        "inLanguage": "da",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Hvad er et SpanBuy spreadsheet?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Det er en oversigt over produktreferencer, typisk med links og kategorier. Åbn den aktuelle vareannonce for at kontrollere variant, mål og lagerstatus."}
+          },
+          {
+            "@type": "Question",
+            "name": "Hvad gør jeg, hvis et produktlink er dødt?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Søg efter modelnavn, varenummer eller sælgernavn. Sammenlign farve, mål og variant med dine noter, før du gemmer et erstatningslink."}
+          },
+          {
+            "@type": "Question",
+            "name": "Hvad kan QC-fotos vise?",
+            "acceptedAnswer": {"@type": "Answer", "text": "QC-fotos kan vise synlige detaljer som syninger, mål, mærkater og skader. De kan sjældent bekræfte pasform, materialets holdbarhed eller ægthed."}
+          },
+          {
+            "@type": "Question",
+            "name": "Hvordan sammenligner jeg fragt til Danmark?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Brug dansk postnummer og pakkens mål og vægt i det aktuelle fragttilbud. Sammenlign sporbarhed, eventuel forsikring og samlede omkostninger, inklusive eventuelle importomkostninger."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+<link rel="canonical" href="https://kakobuyfinds.github.io/ehsik/">
+</head>
+<body>
+  <header class="bar wrap">
+    <a class="brand" href="https://www.hipobuyfind.com">hipobuyfind.com</a>
+    <p class="tag">Dansk købsguide</p>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-labelledby="sidetitel">
+      <div>
+        <p class="tag">Produktlinks · mål · lagerfotos</p>
+        <h1 id="sidetitel">SpanBuy spreadsheet</h1>
+        <p>Et SpanBuy spreadsheet er en oversigt over produktreferencer, typisk med links og kategorier. Brug den til at finde varer, og tjek derefter den aktuelle annonce for farve, størrelse og lagerstatus. Her får du danske kategorier og en tjekliste til dine egne sammenligninger.</p>
+      </div>
+      <figure class="hero-photo">
+        <img src="https://www.ego-sport.pl/hpeciai/a63432ceca39f4d6581781f14515d795/pol_pl_Nike-buty-meskie-Air-Force-1-07-CW2288-111-biale-14786_1.webp" width="640" height="480" alt="Hvid Nike Air Force 1 ’07 med hvid sål" fetchpriority="high">
+        <figcaption>Stilreference · Nike Air Force 1 ’07</figcaption>
+      </figure>
+    </section>
+
+    <nav class="index" aria-labelledby="kategorier">
+      <h2 id="kategorier">Find en kategori på HipobuyFind</h2>
+      <ul>
+        <li><a href="https://hipobuyfind.com/category-911-Shoes.html">Sko <span aria-hidden="true">01</span></a></li>
+        <li><a href="https://hipobuyfind.com/category-912-Hoodies%2FSweaters.html">Hættetrøjer og strik <span aria-hidden="true">02</span></a></li>
+        <li><a href="https://hipobuyfind.com/category-913-T-Shirts.html">T-shirts <span aria-hidden="true">03</span></a></li>
+        <li><a href="https://hipobuyfind.com/category-914-Jackets.html">Jakker <span aria-hidden="true">04</span></a></li>
+        <li><a href="https://hipobuyfind.com/category-915-Pants%2FShorts.html">Bukser og shorts <span aria-hidden="true">05</span></a></li>
+        <li><a href="https://hipobuyfind.com/category-916-Headwear.html">Kasketter og huer <span aria-hidden="true">06</span></a></li>
+        <li><a href="https://hipobuyfind.com/category-917-Sets.html">Tøjsæt <span aria-hidden="true">07</span></a></li>
+        <li><a href="https://hipobuyfind.com/category-918-underwear%2Funderpants.html">Undertøj <span aria-hidden="true">08</span></a></li>
+        <li><a href="https://hipobuyfind.com/category-919-Jersey.html">Sportstrøjer <span aria-hidden="true">09</span></a></li>
+        <li><a href="https://hipobuyfind.com/category-920-Accessories.html">Tilbehør <span aria-hidden="true">10</span></a></li>
+      </ul>
+    </nav>
+
+    <section class="section" aria-labelledby="notater">
+      <p class="tag">Fire købsguides</p>
+      <h2 id="notater">Fra produktlink til pakkeliste</h2>
+      <p class="intro">Sammenlign to varer ad gangen. Notér kildelink, model, variant og kontrolpunkt, så du kan se præcis, hvor oplysningerne adskiller sig.</p>
+      <div class="articles">
+        <article>
+          <p class="tag">01 / Produktlinks</p>
+          <h3>Sådan tjekker du SpanBuy-produktlinks</h3>
+          <p>Gem det oprindelige Weidian-produktlink, Taobao-varenummeret eller 1688-annoncen sammen med sælgernavnet og datoen, hvor du sidst åbnede annoncen. Hvis et gammelt spreadsheet-link fører til en anden vare, så tjek modelkode og farvevariant, før du bruger det.</p>
+          <p>Har du to ens billeder fra forskellige sælgere, så sammenlign materialebeskrivelse, valgmuligheder og returfrist. Markér oplysninger, du endnu mangler, i din egen liste.</p>
+        </article>
+        <article>
+          <p class="tag">02 / Størrelser</p>
+          <h3>Fra sneakers til overtøj: mål, der kan sammenlignes</h3>
+          <p>Ved sneakers kan du måle indersålen i en sko, der passer, og sammenligne længden i centimeter. Til en hættetrøje eller T-shirt kan du måle brystbredde fladt og tøjets ryglængde. Til bukser er taljebredde og indvendig benlængde gode udgangspunkter.</p>
+          <p>Skal en jakke bruges over strik, så sammenlign ærmelængde og plads ved brystet med en jakke, du allerede bruger i lag. Ved en kasket eller et armbånd er det omkredsen, du skal have oplyst.</p>
+        </article>
+        <article>
+          <p class="tag">03 / Kvalitetskontrol</p>
+          <h3>SpanBuy QC-fotos: hvad skal du bede om?</h3>
+          <p>Brug lagerfotos af den valgte variant. Bed om et målebånd på billedet, hvis et mål er afgørende, og om et nærbillede i jævnt lys, hvis du er i tvivl om farve eller overflade.</p>
+          <ul class="check">
+            <li><strong>Sko:</strong> Sammenlign hælform og sål på begge sko.</li>
+            <li><strong>Tøj:</strong> Se efter åbne syninger, trykfejl og en skæv lynlås.</li>
+            <li><strong>Tilbehør:</strong> Bed om fotos af lås, kanter og eventuelle ridser.</li>
+          </ul>
+        </article>
+        <article>
+          <p class="tag">04 / Forsendelse</p>
+          <h3>SpanBuy-fragt til Danmark: sammenlign den samlede pris</h3>
+          <p>Saml varebeløb, lokal fragt, eventuelle agentgebyrer og international fragt i én beregning. Notér valuta og omregning til danske kroner sammen med de eventuelle importomkostninger, du skal regne med.</p>
+          <p>Bed om pakkemål, hvis du vil sammenligne samlet forsendelse med separate pakker. Tjek om fragttilbuddet regner med faktisk vægt eller volumenvægt, og se efter sporing og betingelser for forsikring.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="stil">
+      <p class="tag">Visuelle referencer</p>
+      <h2 id="stil">Detaljer at kigge efter</h2>
+      <p class="intro">Billederne viser stileksempler. Brug dem til at finde de detaljer, du vil sammenligne i den konkrete vareannonce.</p>
+      <div class="gallery">
+        <figure>
+          <img src="https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1712820719/788090_XJGJ7_1043_007_100_0000_Light-cotton-jersey-hooded-sweatshirt.jpg" width="1200" height="1200" loading="lazy" decoding="async" alt="Model i en sort Gucci-hættetrøje med ribkanter">
+          <figcaption><strong>Gucci</strong> · Se på skuldersømmen og kanten ved håndleddet.</figcaption>
+        </figure>
+        <figure>
+          <img src="https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-monogram-essential-cap--M77590_PM2_Front%20view.jpg" width="640" height="640" loading="lazy" decoding="async" alt="Louis Vuitton Monogram Essential-kasket set forfra">
+          <figcaption><strong>Louis Vuitton</strong> · Sammenlign skygge og pasform.</figcaption>
+        </figure>
+        <figure>
+          <img src="https://assets.hermes.com/is/image/hermesproduct/clic-h-bracelet--700001F%208A-worn-1-0-0-800-800_g.jpg" width="800" height="800" loading="lazy" decoding="async" alt="Orange Hermès Clic H-armbånd med guldfarvet H-lås">
+          <figcaption><strong>Hermès</strong> · Se nærmere på emaljen og låsen.</figcaption>
+        </figure>
+        <figure>
+          <img src="https://assets.christiandior.com/is/image/diorprod/943C449A4462C595_E01-2?%24default_GH%24=&amp;crop=381%2C162%2C1243%2C1677&amp;extend=0%2C0%2C0%2C250&amp;hei=2000&amp;scale=0.875&amp;wid=1850" width="1850" height="2000" loading="lazy" decoding="async" alt="Marineblå Dior Oblique-dunjakke med quiltning og lynlås">
+          <figcaption><strong>Dior</strong> · Tjek syninger ved lynlås og manchetter.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section faq" aria-labelledby="sporgsmal">
+      <p class="tag">FAQ</p>
+      <h2 id="sporgsmal">Spørgsmål om produktlinks, QC og fragt</h2>
+      <details open>
+        <summary>Hvad er et SpanBuy spreadsheet?</summary>
+        <p>Det er en oversigt over produktreferencer, typisk med links og kategorier. Åbn den aktuelle vareannonce for at kontrollere variant, mål og lagerstatus.</p>
+      </details>
+      <details>
+        <summary>Hvad gør jeg, hvis et produktlink er dødt?</summary>
+        <p>Søg efter modelnavn, varenummer eller sælgernavn. Sammenlign farve, mål og variant med dine noter, før du gemmer et erstatningslink.</p>
+      </details>
+      <details>
+        <summary>Hvad kan QC-fotos vise?</summary>
+        <p>QC-fotos kan vise synlige detaljer som syninger, mål, mærkater og skader. De kan sjældent bekræfte pasform, materialets holdbarhed eller ægthed.</p>
+      </details>
+      <details>
+        <summary>Hvordan sammenligner jeg fragt til Danmark?</summary>
+        <p>Brug dansk postnummer og pakkens mål og vægt i det aktuelle fragttilbud. Sammenlign sporbarhed, eventuel forsikring og samlede omkostninger, inklusive eventuelle importomkostninger.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p>Uafhængig vejledning. Kategorilinks fører til HipobuyFind. Brandbillederne fungerer som stilreferencer.</p>
+    <p><a class="brand" href="https://www.hipobuyfind.com">Gå til hipobuyfind.com</a></p>
+  </footer>
+</body>
+</html>
